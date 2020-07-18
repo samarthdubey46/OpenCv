@@ -1,0 +1,15 @@
+import  cv2
+import  numpy as np
+img = cv2.imread("download.jpg")
+imggrey = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+imgblur = cv2.GaussianBlur(imggrey,(3,3),0)
+imgcanny = cv2.Canny(img,200,300)
+kernal = np.ones((5,5),np.uint8)
+imgDilation = cv2.dilate(imgcanny,kernal,iterations=1)
+imgerode = cv2.erode(imgDilation,kernal,iterations=1)
+# cv2.imshow("Grey",imggrey)
+# cv2.imshow("Blur",imgblur)
+cv2.imshow("canny",imgcanny)
+cv2.imshow("Dilation",imgDilation)
+cv2.imshow("erode",imgerode)
+cv2.waitKey(0)
